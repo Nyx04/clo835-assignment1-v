@@ -4,8 +4,15 @@ import os
 import random
 import argparse
 
+#sample demo
 
 app = Flask(__name__)
+
+APP_VERSION = os.environ.get("APP_VERSION") or "v2-redeploy-demo"
+
+@app.context_processor
+def inject_version():
+    return dict(app_version=APP_VERSION)
 
 DBHOST = os.environ.get("DBHOST") or "localhost"
 DBUSER = os.environ.get("DBUSER") or "root"
